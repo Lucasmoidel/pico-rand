@@ -1,0 +1,115 @@
+(footprint "ssd1306_i2c_display"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "cdc42161-ec57-4d4b-8213-84945ed0d8e5")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e2dafe36-49b0-4029-a247-d4bca76b8eb5")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "ssd1306_i2c_display"
+		(at 0 26.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "28fe8077-7229-413f-8462-ff98acebfaa8")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Reference" "SSD1306**"
+		(at -1 -5 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "14f9b0ad-6545-418e-b15d-04d5e93c62e6")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -13.65 -2.55)
+		(end 13.65 24.75)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "6d1b8800-0104-4301-8b55-1a7170dc3296")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 28 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "423137bf-c397-479a-a5d6-975844ef4ff5")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" thru_hole circle
+		(at -3.75 0)
+		(size 2 2)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "8727fc68-240f-424d-bbab-4c097af9dc71")
+	)
+	(pad "2" thru_hole roundrect
+		(at -1.25 0)
+		(size 2 2)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(roundrect_rratio 0.15)
+		(uuid "a185f7c5-f9c0-4158-a578-36ddbeed7913")
+	)
+	(pad "3" thru_hole circle
+		(at 1.25 0)
+		(size 2 2)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "8af5aa84-1367-4e12-adfb-9f49f1db4ac2")
+	)
+	(pad "4" thru_hole circle
+		(at 3.75 0)
+		(size 2 2)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "019fb4ca-b284-427b-b114-4fd9556780c6")
+	)
+	(embedded_fonts no)
+)
