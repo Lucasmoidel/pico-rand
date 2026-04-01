@@ -2,14 +2,14 @@
 	(version 20251024)
 	(generator "kicad_symbol_editor")
 	(generator_version "10.0")
-	(symbol "ssd1306"
+	(symbol "adafruit_bq25185"
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
 		(duplicate_pin_numbers_are_jumpers no)
-		(property "Reference" "SSD1306"
-			(at -15.748 4.064 0)
+		(property "Reference" "adafruitbq25185"
+			(at -2.794 13.462 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -61,10 +61,10 @@
 				)
 			)
 		)
-		(symbol "ssd1306_0_1"
+		(symbol "adafruit_bq25185_0_1"
 			(rectangle
-				(start -16.256 0)
-				(end 16.256 -16.256)
+				(start -11.43 6.35)
+				(end 8.89 -31.75)
 				(stroke
 					(width 0)
 					(type default)
@@ -74,11 +74,11 @@
 				)
 			)
 		)
-		(symbol "ssd1306_1_1"
-			(pin passive line
-				(at -7.62 2.54 270)
+		(symbol "adafruit_bq25185_1_1"
+			(pin power_in line
+				(at -13.97 1.27 0)
 				(length 2.54)
-				(name "GND"
+				(name "VIN"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -93,10 +93,10 @@
 					)
 				)
 			)
-			(pin passive line
-				(at -2.54 2.54 270)
+			(pin power_out line
+				(at -13.97 -2.54 0)
 				(length 2.54)
-				(name "VCC"
+				(name "VU"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -111,10 +111,10 @@
 					)
 				)
 			)
-			(pin input line
-				(at 2.54 2.54 270)
+			(pin passive line
+				(at -13.97 -6.35 0)
 				(length 2.54)
-				(name "SCL"
+				(name "D-"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -129,10 +129,10 @@
 					)
 				)
 			)
-			(pin input line
-				(at 7.62 2.54 270)
+			(pin passive line
+				(at -13.97 -10.16 0)
 				(length 2.54)
-				(name "SDA"
+				(name "D+"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -140,6 +140,78 @@
 					)
 				)
 				(number "4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -13.97 -13.97 0)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "5"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin power_out line
+				(at -13.97 -17.78 0)
+				(length 2.54)
+				(name "BAT"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "6"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -13.97 -21.59 0)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "7"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin power_out line
+				(at -13.97 -25.4 0)
+				(length 2.54)
+				(name "5V"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "8"
 					(effects
 						(font
 							(size 1.27 1.27)
