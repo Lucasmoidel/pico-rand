@@ -521,7 +521,7 @@
     "last_paths": {
       "idf": "",
       "netlist": "",
-      "plot": "",
+      "plot": "/home/lucas/Documents/pico-rand/pcb/gerbers/",
       "specctra_dsn": "",
       "vrml": ""
     },

@@ -78,7 +78,7 @@
 			(pin passive line
 				(at -7.62 2.54 270)
 				(length 2.54)
-				(name "GND"
+				(name "VCC"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -96,7 +96,7 @@
 			(pin passive line
 				(at -2.54 2.54 270)
 				(length 2.54)
-				(name "VCC"
+				(name "GND"
 					(effects
 						(font
 							(size 1.27 1.27)
