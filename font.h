@@ -7,7 +7,7 @@
  * <first ascii char>, <last ascii char>,
  * <data>
  */
-static uint8_t font_8x5[] =
+const uint8_t font_8x5[] =
 {
 			8, 5, 1, 32, 126,
 			0x00, 0x00, 0x00, 0x00, 0x00,

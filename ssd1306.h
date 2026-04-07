@@ -1,5 +1,4 @@
 /*
-
 MIT License
 
 Copyright (c) 2021 David Schramm
@@ -23,284 +22,253 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+/** 
+* @file ssd1306.h
+* 
+* simple driver for ssd1306 displays
+*/
+
+#ifndef _inc_ssd1306
+#define _inc_ssd1306
 #include <pico/stdlib.h>
 #include <hardware/i2c.h>
-#include <pico/binary_info.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
 
-#include "ssd1306.h"
-#include "font.h"
+/**
+*	@brief defines commands used in ssd1306
+*/
+typedef enum {
+    SET_CONTRAST = 0x81,
+    SET_ENTIRE_ON = 0xA4,
+    SET_NORM_INV = 0xA6,
+    SET_DISP = 0xAE,
+    SET_MEM_ADDR = 0x20,
+    SET_COL_ADDR = 0x21,
+    SET_PAGE_ADDR = 0x22,
+    SET_DISP_START_LINE = 0x40,
+    SET_SEG_REMAP = 0xA0,
+    SET_MUX_RATIO = 0xA8,
+    SET_COM_OUT_DIR = 0xC0,
+    SET_DISP_OFFSET = 0xD3,
+    SET_COM_PIN_CFG = 0xDA,
+    SET_DISP_CLK_DIV = 0xD5,
+    SET_PRECHARGE = 0xD9,
+    SET_VCOM_DESEL = 0xDB,
+    SET_CHARGE_PUMP = 0x8D
+} ssd1306_command_t;
 
-inline static void swap(int32_t *a, int32_t *b) {
-    int32_t *t=a;
-    *a=*b;
-    *b=*t;
-}
+/**
+*	@brief holds the configuration
+*/
+typedef struct {
+    uint8_t width; 		/**< width of display */
+    uint8_t height; 	/**< height of display */
+    uint8_t pages;		/**< stores pages of display (calculated on initialization*/
+    uint8_t address; 	/**< i2c address of display*/
+    i2c_inst_t *i2c_i; 	/**< i2c connection instance */
+    bool external_vcc; 	/**< whether display uses external vcc */ 
+    uint8_t *buffer;	/**< display buffer */
+    size_t bufsize;		/**< buffer size */
+} ssd1306_t;
 
-inline static void fancy_write(i2c_inst_t *i2c, uint8_t addr, const uint8_t *src, size_t len, char *name) {
-    switch(i2c_write_blocking(i2c, addr, src, len, false)) {
-    case PICO_ERROR_GENERIC:
-        printf("[%s] addr not acknowledged!\n", name);
-        break;
-    case PICO_ERROR_TIMEOUT:
-        printf("[%s] timeout!\n", name);
-        break;
-    default:
-        //printf("[%s] wrote successfully %lu bytes!\n", name, len);
-        break;
-    }
-}
+/**
+*	@brief initialize display
+*
+*	@param[in] p : pointer to instance of ssd1306_t
+*	@param[in] width : width of display
+*	@param[in] height : heigth of display
+*	@param[in] address : i2c address of display
+*	@param[in] i2c_instance : instance of i2c connection
+*	
+* 	@return bool.
+*	@retval true for Success
+*	@retval false if initialization failed
+*/
+bool ssd1306_init(ssd1306_t *p, uint16_t width, uint16_t height, uint8_t address, i2c_inst_t *i2c_instance);
 
-inline static void ssd1306_write(ssd1306_t *p, uint8_t val) {
-    uint8_t d[2]= {0x00, val};
-    fancy_write(p->i2c_i, p->address, d, 2, "ssd1306_write");
-}
+/**
+*	@brief deinitialize display
+*
+*	@param[in] p : instance of display
+*
+*/
+void ssd1306_deinit(ssd1306_t *p);
 
-bool ssd1306_init(ssd1306_t *p, uint16_t width, uint16_t height, uint8_t address, i2c_inst_t *i2c_instance) {
-    p->width=width;
-    p->height=height;
-    p->pages=height/8;
-    p->address=address;
+/**
+*	@brief turn off display
+*
+*	@param[in] p : instance of display
+*
+*/
+void ssd1306_poweroff(ssd1306_t *p);
 
-    p->i2c_i=i2c_instance;
+/**
+	@brief turn on display
 
+	@param[in] p : instance of display
 
-    p->bufsize=(p->pages)*(p->width);
-    if((p->buffer=malloc(p->bufsize+1))==NULL) {
-        p->bufsize=0;
-        return false;
-    }
+*/
+void ssd1306_poweron(ssd1306_t *p);
 
-    ++(p->buffer);
+/**
+	@brief set contrast of display
 
-    // from https://github.com/makerportal/rpi-pico-ssd1306
-    uint8_t cmds[]= {
-        SET_DISP,
-        // timing and driving scheme
-        SET_DISP_CLK_DIV,
-        0x80,
-        SET_MUX_RATIO,
-        height - 1,
-        SET_DISP_OFFSET,
-        0x00,
-        // resolution and layout
-        SET_DISP_START_LINE,
-        // charge pump
-        SET_CHARGE_PUMP,
-        p->external_vcc?0x10:0x14,
-        SET_SEG_REMAP | 0x01,           // column addr 127 mapped to SEG0
-        SET_COM_OUT_DIR | 0x08,         // scan from COM[N] to COM0
-        SET_COM_PIN_CFG,
-        width>2*height?0x02:0x12,
-        // display
-        SET_CONTRAST,
-        0xff,
-        SET_PRECHARGE,
-        p->external_vcc?0x22:0xF1,
-        SET_VCOM_DESEL,
-        0x30,                           // or 0x40?
-        SET_ENTIRE_ON,                  // output follows RAM contents
-        SET_NORM_INV,                   // not inverted
-        SET_DISP | 0x01,
-        // address setting
-        SET_MEM_ADDR,
-        0x00,  // horizontal
-    };
+	@param[in] p : instance of display
+	@param[in] val : contrast
 
-    for(size_t i=0; i<sizeof(cmds); ++i)
-        ssd1306_write(p, cmds[i]);
+*/
+void ssd1306_contrast(ssd1306_t *p, uint8_t val);
 
-    return true;
-}
+/**
+	@brief set invert display
 
-inline void ssd1306_deinit(ssd1306_t *p) {
-    free(p->buffer-1);
-}
+	@param[in] p : instance of display
+	@param[in] inv : inv==0: disable inverting, inv!=0: invert
 
-inline void ssd1306_poweroff(ssd1306_t *p) {
-    ssd1306_write(p, SET_DISP|0x00);
-}
+*/
+void ssd1306_invert(ssd1306_t *p, uint8_t inv);
 
-inline void ssd1306_poweron(ssd1306_t *p) {
-    ssd1306_write(p, SET_DISP|0x01);
-}
+/**
+	@brief display buffer, should be called on change
 
-inline void ssd1306_contrast(ssd1306_t *p, uint8_t val) {
-    ssd1306_write(p, SET_CONTRAST);
-    ssd1306_write(p, val);
-}
+	@param[in] p : instance of display
 
-inline void ssd1306_invert(ssd1306_t *p, uint8_t inv) {
-    ssd1306_write(p, SET_NORM_INV | (inv & 1));
-}
+*/
+void ssd1306_show(ssd1306_t *p);
 
-inline void ssd1306_clear(ssd1306_t *p) {
-    memset(p->buffer, 0, p->bufsize);
-}
+/**
+	@brief clear display buffer
 
-void ssd1306_clear_pixel(ssd1306_t *p, uint32_t x, uint32_t y) {
-    if(x>=p->width || y>=p->height) return;
+	@param[in] p : instance of display
 
-    p->buffer[x+p->width*(y>>3)]&=~(0x1<<(y&0x07));
-}
+*/
+void ssd1306_clear(ssd1306_t *p);
 
-void ssd1306_draw_pixel(ssd1306_t *p, uint32_t x, uint32_t y) {
-    if(x>=p->width || y>=p->height) return;
+/**
+	@brief clear pixel on buffer
 
-    p->buffer[x+p->width*(y>>3)]|=0x1<<(y&0x07); // y>>3==y/8 && y&0x7==y%8
-}
+	@param[in] p : instance of display
+	@param[in] x : x position
+	@param[in] y : y position
+*/
+void ssd1306_clear_pixel(ssd1306_t *p, uint32_t x, uint32_t y);
 
-void ssd1306_draw_line(ssd1306_t *p, int32_t x1, int32_t y1, int32_t x2, int32_t y2) {
-    if(x1>x2) {
-        swap(&x1, &x2);
-        swap(&y1, &y2);
-    }
+/**
+	@brief draw pixel on buffer
 
-    if(x1==x2) {
-        if(y1>y2)
-            swap(&y1, &y2);
-        for(int32_t i=y1; i<=y2; ++i)
-            ssd1306_draw_pixel(p, x1, i);
-        return;
-    }
+	@param[in] p : instance of display
+	@param[in] x : x position
+	@param[in] y : y position
+*/
+void ssd1306_draw_pixel(ssd1306_t *p, uint32_t x, uint32_t y);
 
-    float m=(float) (y2-y1) / (float) (x2-x1);
+/**
+	@brief draw line on buffer
 
-    for(int32_t i=x1; i<=x2; ++i) {
-        float y=m*(float) (i-x1)+(float) y1;
-        ssd1306_draw_pixel(p, i, (uint32_t) y);
-    }
-}
+	@param[in] p : instance of display
+	@param[in] x1 : x position of starting point
+	@param[in] y1 : y position of starting point
+	@param[in] x2 : x position of end point
+	@param[in] y2 : y position of end point
+*/
+void ssd1306_draw_line(ssd1306_t *p, int32_t x1, int32_t y1, int32_t x2, int32_t y2);
 
-void ssd1306_clear_square(ssd1306_t *p, uint32_t x, uint32_t y, uint32_t width, uint32_t height) {
-    for(uint32_t i=0; i<width; ++i)
-        for(uint32_t j=0; j<height; ++j)
-            ssd1306_clear_pixel(p, x+i, y+j);
-}
+/**
+	@brief clear square at given position with given size
 
-void ssd1306_draw_square(ssd1306_t *p, uint32_t x, uint32_t y, uint32_t width, uint32_t height) {
-    for(uint32_t i=0; i<width; ++i)
-        for(uint32_t j=0; j<height; ++j)
-            ssd1306_draw_pixel(p, x+i, y+j);
-}
+	@param[in] p : instance of display
+	@param[in] x : x position of starting point
+	@param[in] y : y position of starting point
+	@param[in] width : width of square
+	@param[in] height : height of square
+*/
+void ssd1306_clear_square(ssd1306_t *p, uint32_t x, uint32_t y, uint32_t width, uint32_t height);
 
-void ssd1306_draw_empty_square(ssd1306_t *p, uint32_t x, uint32_t y, uint32_t width, uint32_t height) {
-    ssd1306_draw_line(p, x, y, x+width, y);
-    ssd1306_draw_line(p, x, y+height, x+width, y+height);
-    ssd1306_draw_line(p, x, y, x, y+height);
-    ssd1306_draw_line(p, x+width, y, x+width, y+height);
-}
+/**
+	@brief draw filled square at given position with given size
 
-void ssd1306_draw_char_with_font(ssd1306_t *p, uint32_t x, uint32_t y, uint32_t scale, const uint8_t *font, char c) {
-    if(c<font[3]||c>font[4])
-        return;
+	@param[in] p : instance of display
+	@param[in] x : x position of starting point
+	@param[in] y : y position of starting point
+	@param[in] width : width of square
+	@param[in] height : height of square
+*/
+void ssd1306_draw_square(ssd1306_t *p, uint32_t x, uint32_t y, uint32_t width, uint32_t height);
 
-    uint32_t parts_per_line=(font[0]>>3)+((font[0]&7)>0);
-    for(uint8_t w=0; w<font[1]; ++w) { // width
-        uint32_t pp=(c-font[3])*font[1]*parts_per_line+w*parts_per_line+5;
-        for(uint32_t lp=0; lp<parts_per_line; ++lp) {
-            uint8_t line=font[pp];
+/**
+	@brief draw empty square at given position with given size
 
-            for(int8_t j=0; j<8; ++j, line>>=1) {
-                if(line & 1)
-                    ssd1306_draw_square(p, x+w*scale, y+((lp<<3)+j)*scale, scale, scale);
-            }
+	@param[in] p : instance of display
+	@param[in] x : x position of starting point
+	@param[in] y : y position of starting point
+	@param[in] width : width of square
+	@param[in] height : height of square
+*/
+void ssd1306_draw_empty_square(ssd1306_t *p, uint32_t x, uint32_t y, uint32_t width, uint32_t height);
 
-            ++pp;
-        }
-    }
-}
+/**
+	@brief draw monochrome bitmap with offset
 
-void ssd1306_draw_string_with_font(ssd1306_t *p, uint32_t x, uint32_t y, uint32_t scale, const uint8_t *font, const char *s) {
-    for(int32_t x_n=x; *s; x_n+=(font[1]+font[2])*scale) {
-        ssd1306_draw_char_with_font(p, x_n, y, scale, font, *(s++));
-    }
-}
+	@param[in] p : instance of display
+	@param[in] data : image data (whole file)
+	@param[in] size : size of image data in bytes
+	@param[in] x_offset : offset of horizontal coordinate
+	@param[in] y_offset : offset of vertical coordinate
+*/
+void ssd1306_bmp_show_image_with_offset(ssd1306_t *p, const uint8_t *data, const long size, uint32_t x_offset, uint32_t y_offset);
 
-void ssd1306_draw_char(ssd1306_t *p, uint32_t x, uint32_t y, uint32_t scale, char c) {
-    ssd1306_draw_char_with_font(p, x, y, scale, font_8x5, c);
-}
+/**
+	@brief draw monochrome bitmap
 
-void ssd1306_draw_string(ssd1306_t *p, uint32_t x, uint32_t y, uint32_t scale, const char *s) {
-    ssd1306_draw_string_with_font(p, x, y, scale, font_8x5, s);
-}
+	@param[in] p : instance of display
+	@param[in] data : image data (whole file)
+	@param[in] size : size of image data in bytes
+*/
+void ssd1306_bmp_show_image(ssd1306_t *p, const uint8_t *data, const long size);
 
-static inline uint32_t ssd1306_bmp_get_val(const uint8_t *data, const size_t offset, uint8_t size) {
-    switch(size) {
-    case 1:
-        return data[offset];
-    case 2:
-        return data[offset]|(data[offset+1]<<8);
-    case 4:
-        return data[offset]|(data[offset+1]<<8)|(data[offset+2]<<16)|(data[offset+3]<<24);
-    default:
-        __builtin_unreachable();
-    }
-    __builtin_unreachable();
-}
+/**
+	@brief draw char with given font
 
-void ssd1306_bmp_show_image_with_offset(ssd1306_t *p, const uint8_t *data, const long size, uint32_t x_offset, uint32_t y_offset) {
-    if(size<54) // data smaller than header
-        return;
+	@param[in] p : instance of display
+	@param[in] x : x starting position of char
+	@param[in] y : y starting position of char
+	@param[in] scale : scale font to n times of original size (default should be 1)
+	@param[in] font : pointer to font
+	@param[in] c : character to draw
+*/
+void ssd1306_draw_char_with_font(ssd1306_t *p, uint32_t x, uint32_t y, uint32_t scale, const uint8_t *font, char c);
 
-    const uint32_t bfOffBits=ssd1306_bmp_get_val(data, 10, 4);
-    const uint32_t biSize=ssd1306_bmp_get_val(data, 14, 4);
-    const uint32_t biWidth=ssd1306_bmp_get_val(data, 18, 4);
-    const int32_t biHeight=(int32_t) ssd1306_bmp_get_val(data, 22, 4);
-    const uint16_t biBitCount=(uint16_t) ssd1306_bmp_get_val(data, 28, 2);
-    const uint32_t biCompression=ssd1306_bmp_get_val(data, 30, 4);
+/**
+	@brief draw char with builtin font
 
-    if(biBitCount!=1) // image not monochrome
-        return;
+	@param[in] p : instance of display
+	@param[in] x : x starting position of char
+	@param[in] y : y starting position of char
+	@param[in] scale : scale font to n times of original size (default should be 1)
+	@param[in] c : character to draw
+*/
+void ssd1306_draw_char(ssd1306_t *p, uint32_t x, uint32_t y, uint32_t scale, char c);
 
-    if(biCompression!=0) // image compressed
-        return;
+/**
+	@brief draw string with given font
 
-    const int table_start=14+biSize;
-    uint8_t color_val=0;
+	@param[in] p : instance of display
+	@param[in] x : x starting position of text
+	@param[in] y : y starting position of text
+	@param[in] scale : scale font to n times of original size (default should be 1)
+	@param[in] font : pointer to font
+	@param[in] s : text to draw
+*/
+void ssd1306_draw_string_with_font(ssd1306_t *p, uint32_t x, uint32_t y, uint32_t scale, const uint8_t *font, const char *s );
 
-    for(uint8_t i=0; i<2; ++i) {
-        if(!((data[table_start+i*4]<<16)|(data[table_start+i*4+1]<<8)|data[table_start+i*4+2])) {
-            color_val=i;
-            break;
-        }
-    }
+/**
+	@brief draw string with builtin font
 
-    uint32_t bytes_per_line=(biWidth/8)+(biWidth&7?1:0);
-    if(bytes_per_line&3)
-        bytes_per_line=(bytes_per_line^(bytes_per_line&3))+4;
+	@param[in] p : instance of display
+	@param[in] x : x starting position of text
+	@param[in] y : y starting position of text
+	@param[in] scale : scale font to n times of original size (default should be 1)
+	@param[in] s : text to draw
+*/
+void ssd1306_draw_string(ssd1306_t *p, uint32_t x, uint32_t y, uint32_t scale, const char *s);
 
-    const uint8_t *img_data=data+bfOffBits;
-
-    int32_t step=biHeight>0?-1:1;
-    int32_t border=biHeight>0?-1:-biHeight;
-
-    for(uint32_t y=biHeight>0?biHeight-1:0; y!=(uint32_t)border; y+=step) {
-        for(uint32_t x=0; x<biWidth; ++x) {
-            if(((img_data[x>>3]>>(7-(x&7)))&1)==color_val)
-                ssd1306_draw_pixel(p, x_offset+x, y_offset+y);
-        }
-        img_data+=bytes_per_line;
-    }
-}
-
-inline void ssd1306_bmp_show_image(ssd1306_t *p, const uint8_t *data, const long size) {
-    ssd1306_bmp_show_image_with_offset(p, data, size, 0, 0);
-}
-
-void ssd1306_show(ssd1306_t *p) {
-    uint8_t payload[]= {SET_COL_ADDR, 0, p->width-1, SET_PAGE_ADDR, 0, p->pages-1};
-    if(p->width==64) {
-        payload[1]+=32;
-        payload[2]+=32;
-    }
-
-    for(size_t i=0; i<sizeof(payload); ++i)
-        ssd1306_write(p, payload[i]);
-
-    *(p->buffer-1)=0x40;
-
-    fancy_write(p->i2c_i, p->address, p->buffer-1, p->bufsize+1, "ssd1306_show");
-}
+#endif
