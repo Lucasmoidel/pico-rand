@@ -25,7 +25,7 @@ void update(int x, int y);
 
 ssd1306_t disp;
 
-int arr[3] = {-1, -1, -1};
+int arr[8] = {-1, -1, -1, -1, -1, -1, -1, -1};
 int len = sizeof(arr) / sizeof(arr[0]);
 int main(){
     stdio_init_all();
@@ -125,31 +125,17 @@ void update(int x, int y){
 
     ssd1306_draw_string_with_font(&disp, 128 - (((5*2)*stream.str().length())+((stream.str().length()-1)*2)), (64 - (8*2))/2, 2, font_8x5, stream.str().c_str());
 
-    for (int i = 0; i < len; i++){
+    for (int i = 0; i < 3; i++){
         stream.str("");
         stream.clear();
-        if (arr[i] > 0){
+        if (arr[i+5] > 0){
             stream << arr[i];
         }
         ssd1306_draw_string_with_font(&disp, 0, (i*(8*2))+(i*8), 2, font_8x5, stream.str().c_str());
     }
 
 
-    // ssd1306_draw_line(&disp, 64, 3, 88, 17);
-    // ssd1306_draw_line(&disp, 64, 3, 80, 20);
-    // ssd1306_draw_line(&disp, 40, 17, 64, 3);
-    // ssd1306_draw_line(&disp, 48, 20, 64, 3);
-
-    // ssd1306_draw_line(&disp, 40, 17, 40, 46);
-    // ssd1306_draw_line(&disp, 40, 17, 48, 20);
-    // ssd1306_draw_line(&disp, 48, 20, 40, 46);
-    // ssd1306_draw_line(&disp, 40, 46, 48, 20);
-
-    // ssd1306_draw_line(&disp, 48, 20, 64, 49);
-    // ssd1306_draw_line(&disp, 40, 46, 64, 49);
-    //ssd1306_bmp_show_image(&disp, _home_lucas_Documents_pico_rand_image_bmp_data, _home_lucas_Documents_pico_rand_image_bmp_size);
-
-
+    
     ssd1306_show(&disp);
 
 }
