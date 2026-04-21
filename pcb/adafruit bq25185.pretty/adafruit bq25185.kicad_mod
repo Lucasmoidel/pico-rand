@@ -7,7 +7,7 @@
 		(at 12.4 -5.9 0)
 		(unlocked yes)
 		(layer "F.SilkS")
-		(uuid "18675073-d0e0-4677-be17-586774ccdcfd")
+		(uuid "e665690b-cd15-474e-810b-d7266f6abec0")
 		(effects
 			(font
 				(size 1 1)
@@ -19,7 +19,7 @@
 		(at 12.4 -4.4 0)
 		(unlocked yes)
 		(layer "F.Fab")
-		(uuid "d69328b1-645c-4fb5-9054-b46a668fa09b")
+		(uuid "86da6567-4027-461b-9fae-2d61ad5c8f50")
 		(effects
 			(font
 				(size 1 1)
@@ -32,7 +32,7 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "3af204ee-74bf-4038-82cd-38b02f630779")
+		(uuid "edb5dd09-98e7-47d7-877a-fff540a6fa00")
 		(effects
 			(font
 				(size 1 1)
@@ -45,7 +45,7 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "681eff36-f0b6-4908-a46b-e245392a57e7")
+		(uuid "7d292876-c497-470c-b056-ecb0d13bc9ca")
 		(effects
 			(font
 				(size 1 1)
@@ -64,13 +64,13 @@
 		)
 		(fill no)
 		(layer "F.SilkS")
-		(uuid "038416e5-9432-422b-9eb6-c10cbcc9c0fd")
+		(uuid "14e8dcf1-2e02-48c0-9022-810e4eac53a0")
 	)
 	(fp_text user "${REFERENCE}"
 		(at 12.4 -2.9 0)
 		(unlocked yes)
 		(layer "F.Fab")
-		(uuid "84875abf-7d1a-45dd-909d-543733b474e2")
+		(uuid "e306f3ac-dd95-471c-ad1f-9b6ce3e102d9")
 		(effects
 			(font
 				(size 1 1)
@@ -79,76 +79,76 @@
 		)
 	)
 	(pad "1" thru_hole circle
-		(at 5.855914 16.51)
+		(at 5.855 16.51)
 		(size 2 2)
 		(drill 1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
-		(uuid "f0a7d0a7-dccd-43e9-a9ba-3c620e9410cd")
+		(uuid "3ef3e795-9447-449e-aa5b-762424cb772f")
 	)
 	(pad "2" thru_hole circle
-		(at 8.355914 16.51)
+		(at 8.355 16.51)
 		(size 2 2)
 		(drill 1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
-		(uuid "c2ae66ae-c74b-40c9-97ea-c8fd34cd1faa")
+		(uuid "aa79ca6a-d6bf-4a94-aebe-3d8b410dadb0")
 	)
 	(pad "3" thru_hole circle
-		(at 10.855914 16.51)
+		(at 10.855 16.51)
 		(size 2 2)
 		(drill 1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
-		(uuid "7a892f83-96c8-4424-8331-d6be0ab1ca52")
+		(uuid "008ae132-5c65-46e5-93d7-2a32f169a07a")
 	)
 	(pad "4" thru_hole circle
-		(at 13.355914 16.51)
+		(at 13.355 16.51)
 		(size 2 2)
 		(drill 1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
-		(uuid "9b5623c8-517a-443c-b15f-d66acaf710b2")
+		(uuid "6a076529-fb5a-4e43-8bea-2fb1455ab8f8")
 	)
 	(pad "5" thru_hole roundrect
-		(at 15.855914 16.51)
+		(at 15.855 16.51)
 		(size 2 2)
 		(drill 1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(roundrect_rratio 0.125)
-		(uuid "6f0b5ee4-b948-46d7-a707-825f64b6a093")
+		(uuid "a7d265d5-a8ea-4e98-87db-26e772d5b53b")
 	)
 	(pad "6" thru_hole circle
-		(at 18.355914 16.51)
+		(at 18.355 16.51)
 		(size 2 2)
 		(drill 1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
-		(uuid "1eee477a-43dc-4bf1-839f-60b352455d10")
+		(uuid "2d4391ec-08e8-4fe3-9771-01ce901f6722")
 	)
 	(pad "7" thru_hole circle
-		(at 20.855914 16.51)
+		(at 20.855 16.51)
 		(size 2 2)
 		(drill 1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
-		(uuid "6b61c84f-2b4c-4315-bc47-b823bdedb996")
+		(uuid "5e0b3ea2-77f0-418c-94d7-a0b32285f95b")
 	)
 	(pad "8" thru_hole circle
-		(at 23.355914 16.51)
+		(at 23.355 16.51)
 		(size 2 2)
 		(drill 1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
-		(uuid "dda593be-c16d-4fc3-86ae-23d2cdd37714")
+		(uuid "9f0bd404-84fd-42d5-82e9-edeb4c989fc1")
 	)
 	(group ""
-		(uuid "42165493-10d8-42c2-90f7-29f4552a8443")
-		(members "1eee477a-43dc-4bf1-839f-60b352455d10" "6b61c84f-2b4c-4315-bc47-b823bdedb996"
-			"6f0b5ee4-b948-46d7-a707-825f64b6a093" "7a892f83-96c8-4424-8331-d6be0ab1ca52"
-			"9b5623c8-517a-443c-b15f-d66acaf710b2" "c2ae66ae-c74b-40c9-97ea-c8fd34cd1faa"
-			"dda593be-c16d-4fc3-86ae-23d2cdd37714" "f0a7d0a7-dccd-43e9-a9ba-3c620e9410cd"
+		(uuid "c59b2b76-5acf-4524-a094-5c12a80d968e")
+		(members "008ae132-5c65-46e5-93d7-2a32f169a07a" "2d4391ec-08e8-4fe3-9771-01ce901f6722"
+			"3ef3e795-9447-449e-aa5b-762424cb772f" "5e0b3ea2-77f0-418c-94d7-a0b32285f95b"
+			"6a076529-fb5a-4e43-8bea-2fb1455ab8f8" "9f0bd404-84fd-42d5-82e9-edeb4c989fc1"
+			"a7d265d5-a8ea-4e98-87db-26e772d5b53b" "aa79ca6a-d6bf-4a94-aebe-3d8b410dadb0"
 		)
 	)
 	(embedded_fonts no)
