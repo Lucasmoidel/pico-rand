@@ -1777,86 +1777,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Switch:SW_Push")
-		(at 68.58 88.9 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "10d80e56-d1f5-4afc-8567-e37ae1e2db7d")
-		(property "Reference" "SW1"
-			(at 68.58 81.28 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "up"
-			(at 68.58 83.82 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 68.58 83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 68.58 83.82 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Push button switch, generic, two pins"
-			(at 68.58 88.9 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "04995812-00da-4706-afee-7e0081122244")
-		)
-		(pin "2"
-			(uuid "cbc7a8f7-6928-4abf-8ec4-081cff9b0d91")
-		)
-		(instances
-			(project "pcb"
-				(path "/bb6da232-368e-4a1f-bf9d-dbd7b03483b8"
-					(reference "SW1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 166.37 54.61 270)
 		(unit 1)
@@ -1866,7 +1786,6 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "1d4facf7-90c2-45de-a76e-d58ecff17c05")
 		(property "Reference" "#PWR013"
 			(at 160.02 54.61 0)
@@ -1880,7 +1799,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 165.1 50.8 90)
+			(at 161.29 54.61 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2046,7 +1965,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_Via"
 			(at 200.66 110.49 0)
 			(hide yes)
 			(show_name no)
@@ -2123,7 +2042,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Button_Switch_THT:SW_Slide_SPDT_Straight_CK_OS102011MS2Q"
 			(at 168.91 77.47 0)
 			(hide yes)
 			(show_name no)
@@ -2358,7 +2277,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H5mm"
 			(at 68.58 93.98 0)
 			(hide yes)
 			(show_name no)
@@ -2752,7 +2671,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "ssd1306:ssd1306_i2c_display"
 			(at 100.33 130.81 0)
 			(hide yes)
 			(show_name no)
@@ -2840,7 +2759,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_Via"
 			(at 200.66 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -2919,7 +2838,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_Via"
 			(at 200.66 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -3045,7 +2964,7 @@
 	)
 	(symbol
 		(lib_id "Switch:SW_Push")
-		(at 68.58 109.22 0)
+		(at 68.58 88.9 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3054,9 +2973,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "c8038c4c-4b8a-4e50-9ba1-a55009c1c466")
-		(property "Reference" "SW3"
-			(at 68.58 101.6 0)
+		(uuid "cf7458cc-319a-4729-9135-8c5dce1aebc3")
+		(property "Reference" "SW1"
+			(at 68.58 81.28 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3066,7 +2985,7 @@
 			)
 		)
 		(property "Value" "generate"
-			(at 68.58 104.14 0)
+			(at 68.58 83.82 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3075,8 +2994,8 @@
 				)
 			)
 		)
-		(property "Footprint" ""
-			(at 68.58 104.14 0)
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H5mm"
+			(at 68.58 83.82 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3087,7 +3006,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 68.58 104.14 0)
+			(at 68.58 83.82 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3098,7 +3017,7 @@
 			)
 		)
 		(property "Description" "Push button switch, generic, two pins"
-			(at 68.58 109.22 0)
+			(at 68.58 88.9 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3109,15 +3028,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "8f526bf2-13b5-4bcd-99a9-00fa9e720463")
+			(uuid "bdfb6e33-18f4-4f84-8178-ad63dd8d781a")
 		)
 		(pin "2"
-			(uuid "a5ea391e-8b5a-4cef-a46e-821d849d7421")
+			(uuid "b811964b-129e-45f1-a1c6-70bb1810be33")
 		)
 		(instances
 			(project "pcb"
 				(path "/bb6da232-368e-4a1f-bf9d-dbd7b03483b8"
-					(reference "SW3")
+					(reference "SW1")
 					(unit 1)
 				)
 			)
@@ -3157,7 +3076,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_Via"
 			(at 200.66 100.33 0)
 			(hide yes)
 			(show_name no)
@@ -3351,7 +3270,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "adafruit bq25185:adafruit bq25185"
 			(at 180.34 40.64 0)
 			(hide yes)
 			(show_name no)
@@ -3412,6 +3331,86 @@
 			(project "pcb"
 				(path "/bb6da232-368e-4a1f-bf9d-dbd7b03483b8"
 					(reference "adafruitbq1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Switch:SW_Push")
+		(at 68.58 109.22 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ed1d0700-65b0-4043-9f86-aa9073bec776")
+		(property "Reference" "SW3"
+			(at 68.58 101.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "up"
+			(at 68.58 104.14 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H5mm"
+			(at 68.58 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 68.58 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Push button switch, generic, two pins"
+			(at 68.58 109.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "8f0039d2-d5e5-46e0-8e48-bb9e46f4dbf1")
+		)
+		(pin "2"
+			(uuid "48436e01-081a-4de0-9505-4b6afaad6919")
+		)
+		(instances
+			(project "pcb"
+				(path "/bb6da232-368e-4a1f-bf9d-dbd7b03483b8"
+					(reference "SW3")
 					(unit 1)
 				)
 			)

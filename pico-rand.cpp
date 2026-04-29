@@ -19,10 +19,12 @@ void update(int x, int y);
 // I2C defines
 // This example will use I2C0 on GPIO8 (SDA) and GPIO9 (SCL) running at 400KHz.
 // Pins can be changed, see the GPIO function select table in the datasheet for information on GPIO assignments
-#define I2C_PORT i2c0
-#define I2C_SDA 16  
-#define I2C_SCL 17
-
+#define I2C_PORT i2c1
+#define I2C_SDA 6  
+#define I2C_SCL 7
+#define GPIN 26
+#define UPIN 27
+#define DPIN 28
 ssd1306_t disp;
 
 int arr[8] = {-1, -1, -1, -1, -1, -1, -1, -1};
@@ -38,20 +40,20 @@ int main(){
     gpio_pull_up(I2C_SDA);
     gpio_pull_up(I2C_SCL);
 
-    gpio_init(7);
-    gpio_set_dir(7, GPIO_IN);
-    gpio_pull_up(7);
+    gpio_init(GPIN);
+    gpio_set_dir(GPIN, GPIO_IN);
+    gpio_pull_up(GPIN);
 
-    gpio_init(12);
-    gpio_set_dir(12, GPIO_IN);
-    gpio_pull_up(12);
+    gpio_init(DPIN);
+    gpio_set_dir(DPIN, GPIO_IN);
+    gpio_pull_up(DPIN);
 
-    gpio_init(11);
-    gpio_set_dir(11, GPIO_IN);
-    gpio_pull_up(11);
+    gpio_init(UPIN);
+    gpio_set_dir(UPIN, GPIO_IN);
+    gpio_pull_up(UPIN);
 
     disp.external_vcc=false;
-    ssd1306_init(&disp, 128, 64, 0x3C, i2c0);
+    ssd1306_init(&disp, 128, 64, 0x3C, i2c1);
     ssd1306_clear(&disp);
 
     ssd1306_draw_string_with_font(&disp, 0, 0, 4, font_8x5, "!");
@@ -63,43 +65,48 @@ int main(){
     bool changedn = false;
     int x = 0;
     int students = 30;
-   
+    bool good = false;
     while (true){
 
-        if (!changeup && !gpio_get(11)){
+        if (!changeup && !gpio_get(UPIN)){
             changeup = true;
         }
-        if (changeup && gpio_get(11)){
+        if (changeup && gpio_get(UPIN)){
             changeup = false;
             students--;
             
             update(x, students);
         }
 
-        if (!changedn && !gpio_get(12)){
+        if (!changedn && !gpio_get(DPIN)){
             changedn = true;
         }
-        if (changedn && gpio_get(12)){
+        if (changedn && gpio_get(DPIN)){
             changedn = false;
             students++;
             
             update(x, students);
         }
 
-        if (!generate && !gpio_get(7)){
+        if (!generate && !gpio_get(GPIN)){
             generate = true;
         }
-        if (generate && gpio_get(7)){
+        if (generate && gpio_get(GPIN)){
             generate = false;
             for (int i = 0; i < len-1; i++){
                 arr[i] = arr[i+1];
             }
             arr[len-1] = x;
-            x = (get_rand_32()%students)+1;
-            while(x == arr[len-1]){
+            while(!good){
+                good = true;
                 x = (get_rand_32()%students)+1;
+                for (int i = 0; i < len; i++){
+                    if (x == arr[i]){
+                        good = false;
+                    }
+                }
             }
-            
+            good = false;
             update(x, students);
         }
         sleep_ms(50);
@@ -125,13 +132,13 @@ void update(int x, int y){
 
     ssd1306_draw_string_with_font(&disp, 128 - (((5*2)*stream.str().length())+((stream.str().length()-1)*2)), (64 - (8*2))/2, 2, font_8x5, stream.str().c_str());
 
-    for (int i = 0; i < 3; i++){
+    for (int i = len-3; i < len; i++){
         stream.str("");
         stream.clear();
-        if (arr[i+5] > 0){
+        if (arr[i] > 0){
             stream << arr[i];
         }
-        ssd1306_draw_string_with_font(&disp, 0, (i*(8*2))+(i*8), 2, font_8x5, stream.str().c_str());
+        ssd1306_draw_string_with_font(&disp, 0, ((i-5)*(8*2))+((i-5)*8), 2, font_8x5, stream.str().c_str());
     }
 
 
