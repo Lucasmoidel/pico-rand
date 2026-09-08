@@ -11,187 +11,6 @@
 		(comment 4 "Lucas Moidel")
 	)
 	(lib_symbols
-		(symbol "Connector:Conn_01x02_Pin"
-			(pin_names
-				(offset 1.016)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "J"
-				(at 0 2.54 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "Conn_01x02_Pin"
-				(at 0 -5.08 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Generic connector, single row, 01x02, script generated"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_locked" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "connector"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_fp_filters" "Connector*:*_1x??_*"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "Conn_01x02_Pin_1_1"
-				(rectangle
-					(start 0.8636 0.127)
-					(end 0 -0.127)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(rectangle
-					(start 0.8636 -2.413)
-					(end 0 -2.667)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 0) (xy 0.8636 0)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 -2.54) (xy 0.8636 -2.54)
-					)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at 5.08 0 180)
-					(length 3.81)
-					(name "Pin_1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 -2.54 180)
-					(length 3.81)
-					(name "Pin_2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Mechanical:MountingHole_Pad"
 			(pin_numbers
 				(hide yes)
@@ -1703,7 +1522,7 @@
 	)
 	(text_box "pin map"
 		(exclude_from_sim no)
-		(at 163.83 137.16 0)
+		(at 153.67 146.05 0)
 		(size 12.7 2.54)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
@@ -1771,6 +1590,10 @@
 		(uuid "237a59cd-9e29-47e0-952e-f13d1bd8838c")
 	)
 	(no_connect
+		(at 137.16 78.74)
+		(uuid "2db10ded-d186-4b65-8a64-b98ac3b816b1")
+	)
+	(no_connect
 		(at 158.75 97.79)
 		(uuid "30fd8087-bea4-4c43-a77d-4cd08ca415bc")
 	)
@@ -1799,6 +1622,10 @@
 		(uuid "597dc16d-eace-49e8-a191-a7cdca8ef886")
 	)
 	(no_connect
+		(at 133.35 130.81)
+		(uuid "7bd1091a-cfe8-445d-9baf-c5c204f72c25")
+	)
+	(no_connect
 		(at 158.75 105.41)
 		(uuid "80eb0de8-e2c6-4c3d-9926-207fcbb0c462")
 	)
@@ -1813,6 +1640,10 @@
 	(no_connect
 		(at 113.03 121.92)
 		(uuid "9c5d3505-aa6e-4550-b17e-8e6ed23b3e88")
+	)
+	(no_connect
+		(at 137.16 130.81)
+		(uuid "a5b4b261-c832-4dec-8d48-91df028a7f0f")
 	)
 	(no_connect
 		(at 158.75 121.92)
@@ -1849,16 +1680,6 @@
 			(type default)
 		)
 		(uuid "0ccd5978-9212-4a27-82eb-ab86d4cb8f4e")
-	)
-	(wire
-		(pts
-			(xy 133.35 130.81) (xy 133.35 137.16)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "255c7e37-ded2-4b08-a29a-a90e739c1f94")
 	)
 	(wire
 		(pts
@@ -1899,16 +1720,6 @@
 			(type default)
 		)
 		(uuid "6eb774c9-e564-4f7d-8bf3-bdea2142134f")
-	)
-	(wire
-		(pts
-			(xy 137.16 137.16) (xy 135.89 137.16)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "76480d87-380a-4bcc-9501-e374dfbb8ab0")
 	)
 	(wire
 		(pts
@@ -1959,16 +1770,6 @@
 			(type default)
 		)
 		(uuid "a3dec41c-ce2d-444e-b43b-9ab0888f337e")
-	)
-	(wire
-		(pts
-			(xy 137.16 130.81) (xy 137.16 137.16)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b2ce2a98-8f2f-4205-872c-29ccc3b8b923")
 	)
 	(wire
 		(pts
@@ -2064,7 +1865,7 @@
 		(cells
 			(table_cell "d0"
 				(exclude_from_sim no)
-				(at 163.83 139.7 0)
+				(at 153.67 148.59 0)
 				(size 3.81 2.54)
 				(margins 0.9525 0.9525 0.9525 0.9525)
 				(span 1 1)
@@ -2081,7 +1882,7 @@
 			)
 			(table_cell "GPIO26"
 				(exclude_from_sim no)
-				(at 167.64 139.7 0)
+				(at 157.48 148.59 0)
 				(size 8.89 2.54)
 				(margins 0.9525 0.9525 0.9525 0.9525)
 				(span 1 1)
@@ -2098,7 +1899,7 @@
 			)
 			(table_cell "d1"
 				(exclude_from_sim no)
-				(at 163.83 142.24 0)
+				(at 153.67 151.13 0)
 				(size 3.81 2.54)
 				(margins 0.9525 0.9525 0.9525 0.9525)
 				(span 1 1)
@@ -2115,7 +1916,7 @@
 			)
 			(table_cell "GPIO27"
 				(exclude_from_sim no)
-				(at 167.64 142.24 0)
+				(at 157.48 151.13 0)
 				(size 8.89 2.54)
 				(margins 0.9525 0.9525 0.9525 0.9525)
 				(span 1 1)
@@ -2132,7 +1933,7 @@
 			)
 			(table_cell "d2"
 				(exclude_from_sim no)
-				(at 163.83 144.78 0)
+				(at 153.67 153.67 0)
 				(size 3.81 2.54)
 				(margins 0.9525 0.9525 0.9525 0.9525)
 				(span 1 1)
@@ -2149,7 +1950,7 @@
 			)
 			(table_cell "GPIO28"
 				(exclude_from_sim no)
-				(at 167.64 144.78 0)
+				(at 157.48 153.67 0)
 				(size 8.89 2.54)
 				(margins 0.9525 0.9525 0.9525 0.9525)
 				(span 1 1)
@@ -2166,7 +1967,7 @@
 			)
 			(table_cell "d4"
 				(exclude_from_sim no)
-				(at 163.83 147.32 0)
+				(at 153.67 156.21 0)
 				(size 3.81 2.54)
 				(margins 0.9525 0.9525 0.9525 0.9525)
 				(span 1 1)
@@ -2183,7 +1984,7 @@
 			)
 			(table_cell "GPIO6"
 				(exclude_from_sim no)
-				(at 167.64 147.32 0)
+				(at 157.48 156.21 0)
 				(size 8.89 2.54)
 				(margins 0.9525 0.9525 0.9525 0.9525)
 				(span 1 1)
@@ -2200,7 +2001,7 @@
 			)
 			(table_cell "d5"
 				(exclude_from_sim no)
-				(at 163.83 149.86 0)
+				(at 153.67 158.75 0)
 				(size 3.81 2.54)
 				(margins 0.9525 0.9525 0.9525 0.9525)
 				(span 1 1)
@@ -2217,7 +2018,7 @@
 			)
 			(table_cell "GPIO7"
 				(exclude_from_sim no)
-				(at 167.64 149.86 0)
+				(at 157.48 158.75 0)
 				(size 8.89 2.54)
 				(margins 0.9525 0.9525 0.9525 0.9525)
 				(span 1 1)
@@ -2231,84 +2032,6 @@
 					(justify left top)
 				)
 				(uuid "fc4dc21e-3f8e-45df-aa05-b6211e7320ee")
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 137.16 78.74 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "030efbd7-93b0-49e7-ae35-d0c5f4d54ff7")
-		(property "Reference" "#PWR010"
-			(at 137.16 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 137.16 73.66 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 137.16 78.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 137.16 78.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 137.16 78.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "beac3e2d-3abe-41af-ae3d-eb6cc04cc6c3")
-		)
-		(instances
-			(project "pcb"
-				(path "/bb6da232-368e-4a1f-bf9d-dbd7b03483b8"
-					(reference "#PWR010")
-					(unit 1)
-				)
 			)
 		)
 	)
@@ -3496,88 +3219,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:Conn_01x02_Pin")
-		(at 133.35 142.24 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "c5fe5d44-41e5-42e4-8adc-307a7563915f")
-		(property "Reference" "J1"
-			(at 137.16 140.3349 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "Conn_01x02_Pin"
-			(at 137.16 142.8749 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Connector_PinHeader_1.00mm:PinHeader_1x02_P1.00mm_Vertical"
-			(at 133.35 142.24 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 133.35 142.24 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Generic connector, single row, 01x02, script generated"
-			(at 133.35 142.24 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "8b194189-b14a-48e8-b8ff-07c991897db7")
-		)
-		(pin "2"
-			(uuid "fe8fcfe9-8bf5-4de6-813e-4f107d44bf14")
-		)
-		(instances
-			(project "pcb"
-				(path "/bb6da232-368e-4a1f-bf9d-dbd7b03483b8"
-					(reference "J1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "seed studio xiao:XIAO-RP2350-SMD")
 		(at 137.16 109.22 0)
 		(unit 1)
@@ -3600,7 +3241,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "XIAO-RP2350-SMD-MODEL"
+		(property "Value" "XIAO-RP2350-SMD"
 			(at 139.3033 133.35 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3611,7 +3252,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "seed studio xiao:XIAO-RP2350-SMD-MODEL"
+		(property "Footprint" "Seeed_Studio_XIAO_Series:XIAO-RP2350-SMD"
 			(at 137.668 98.806 0)
 			(hide yes)
 			(show_name no)

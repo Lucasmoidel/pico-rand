@@ -9,9 +9,10 @@
 #include "hardware/clocks.h"
 #include "pico/rand.h"
 #include <random>
-extern "C" {
-#include "ssd1306.h"
-#include "font.h"
+extern "C"
+{
+    #include "ssd1306.h"
+    #include "font.h"
 }
 
 void update(int x, int y);
@@ -19,22 +20,23 @@ void update(int x, int y);
 // I2C defines
 // This example will use I2C0 on GPIO8 (SDA) and GPIO9 (SCL) running at 400KHz.
 // Pins can be changed, see the GPIO function select table in the datasheet for information on GPIO assignments
-#define I2C_PORT i2c1
-#define I2C_SDA 6  
-#define I2C_SCL 7
+#define I2C_PORT i2c0
+#define I2C_SDA 8
+#define I2C_SCL 9
 #define GPIN 26
 #define UPIN 27
 #define DPIN 28
 ssd1306_t disp;
 
-int arr[8] = {-1, -1, -1, -1, -1, -1, -1, -1};
+int arr[8] = { -1, -1, -1, -1, -1, -1, -1, -1 };
 int len = sizeof(arr) / sizeof(arr[0]);
-int main(){
+int main()
+{
     stdio_init_all();
 
     // I2C Initialisation. Using it at 400Khz.
-    i2c_init(I2C_PORT, 400*1000);
-    
+    i2c_init(I2C_PORT, 400 * 1000);
+
     gpio_set_function(I2C_SDA, GPIO_FUNC_I2C);
     gpio_set_function(I2C_SCL, GPIO_FUNC_I2C);
     gpio_pull_up(I2C_SDA);
@@ -52,56 +54,67 @@ int main(){
     gpio_set_dir(UPIN, GPIO_IN);
     gpio_pull_up(UPIN);
 
-    disp.external_vcc=false;
-    ssd1306_init(&disp, 128, 64, 0x3C, i2c1);
+    disp.external_vcc = false;
+    ssd1306_init(&disp, 128, 64, 0x3C, I2C_PORT);
     ssd1306_clear(&disp);
 
     ssd1306_draw_string_with_font(&disp, 0, 0, 4, font_8x5, "!");
 
     ssd1306_show(&disp);
 
-    bool generate = false;
+    bool generate = true;
     bool changeup = false;
     bool changedn = false;
     int x = 0;
     int students = 30;
     bool good = false;
-    while (true){
+    while (true)
+    {
 
-        if (!changeup && !gpio_get(UPIN)){
+        if (!changeup && !gpio_get(UPIN))
+        {
             changeup = true;
         }
-        if (changeup && gpio_get(UPIN)){
+        if (changeup && gpio_get(UPIN))
+        {
             changeup = false;
             students--;
-            
+
             update(x, students);
         }
 
-        if (!changedn && !gpio_get(DPIN)){
+        if (!changedn && !gpio_get(DPIN))
+        {
             changedn = true;
         }
-        if (changedn && gpio_get(DPIN)){
+        if (changedn && gpio_get(DPIN))
+        {
             changedn = false;
             students++;
-            
+
             update(x, students);
         }
 
-        if (!generate && !gpio_get(GPIN)){
+        if (!generate && !gpio_get(GPIN))
+        {
             generate = true;
         }
-        if (generate && gpio_get(GPIN)){
+        if (generate && gpio_get(GPIN))
+        {
             generate = false;
-            for (int i = 0; i < len-1; i++){
-                arr[i] = arr[i+1];
+            for (int i = 0; i < len - 1; i++)
+            {
+                arr[i] = arr[i + 1];
             }
-            arr[len-1] = x;
-            while(!good){
+            arr[len - 1] = x;
+            while (!good)
+            {
                 good = true;
-                x = (get_rand_32()%students)+1;
-                for (int i = 0; i < len; i++){
-                    if (x == arr[i]){
+                x = (get_rand_32() % students) + 1;
+                for (int i = 0; i < len; i++)
+                {
+                    if (x == arr[i])
+                    {
                         good = false;
                     }
                 }
@@ -114,7 +127,8 @@ int main(){
     return 0;
 }
 
-void update(int x, int y){
+void update(int x, int y)
+{
     ssd1306_clear(&disp);
     int scale = 5;
 
@@ -123,26 +137,37 @@ void update(int x, int y){
     stream.clear();
     stream << x;
 
-    ssd1306_draw_string_with_font(&disp, (128 - ((5*scale)*stream.str().length())+((stream.str().length()-1)*scale))/2, (64 - (8*scale))/2, scale, font_8x5, stream.str().c_str());
+    ssd1306_draw_string_with_font(&disp, (128 - ((5 * scale) * stream.str().length()) + ((stream.str().length() - 1) * scale)) / 2, (64 - (8 * scale)) / 2, scale, font_8x5, stream.str().c_str());
 
     std::stringstream num;
     stream.str("");
     stream.clear();
     stream << y;
 
-    ssd1306_draw_string_with_font(&disp, 128 - (((5*2)*stream.str().length())+((stream.str().length()-1)*2)), (64 - (8*2))/2, 2, font_8x5, stream.str().c_str());
+    ssd1306_draw_string_with_font(&disp, 128 - (((5 * 2) * stream.str().length()) + ((stream.str().length() - 1) * 2)), (64 - (8 * 2)) / 2, 2, font_8x5, stream.str().c_str());
 
-    for (int i = len-3; i < len; i++){
+    for (int i = len - 3; i < len; i++)
+    {
         stream.str("");
         stream.clear();
-        if (arr[i] > 0){
+        if (arr[i] > 0)
+        {
             stream << arr[i];
         }
-        ssd1306_draw_string_with_font(&disp, 0, ((i-5)*(8*2))+((i-5)*8), 2, font_8x5, stream.str().c_str());
+        ssd1306_draw_string_with_font(&disp, 0, ((i - 5) * (8 * 2)) + ((i - 5) * 8), 2, font_8x5, stream.str().c_str());
     }
 
-
-    
     ssd1306_show(&disp);
+}
+
+void game() {
+    while (true)
+    {
+        ssd1306_clear(&disp);
+
+        ssd1306_draw_square(&disp, 25, 36, 25, 25);
+        ssd1306_show(&disp);
+
+    }
 
 }

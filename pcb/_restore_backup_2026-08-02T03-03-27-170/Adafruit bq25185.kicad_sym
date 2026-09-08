@@ -2,14 +2,14 @@
 	(version 20251024)
 	(generator "kicad_symbol_editor")
 	(generator_version "10.0")
-	(symbol "MOUDLE-SEEEDUINO-XIAO"
+	(symbol "adafruit_bq25185"
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
 		(duplicate_pin_numbers_are_jumpers no)
-		(property "Reference" "U"
-			(at -16.51 11.43 0)
+		(property "Reference" "adafruitbq25185"
+			(at -2.794 13.462 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -18,8 +18,8 @@
 				)
 			)
 		)
-		(property "Value" "MOUDLE-SEEEDUINO-XIAO"
-			(at -3.81 -11.43 0)
+		(property "Value" ""
+			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -29,7 +29,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at -16.51 2.54 0)
+			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -40,7 +40,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at -16.51 2.54 0)
+			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -61,10 +61,10 @@
 				)
 			)
 		)
-		(symbol "MOUDLE-SEEEDUINO-XIAO_0_1"
+		(symbol "adafruit_bq25185_0_1"
 			(rectangle
-				(start -16.51 10.16)
-				(end 19.05 -10.16)
+				(start -11.43 6.35)
+				(end 8.89 -31.75)
 				(stroke
 					(width 0)
 					(type default)
@@ -74,11 +74,11 @@
 				)
 			)
 		)
-		(symbol "MOUDLE-SEEEDUINO-XIAO_1_1"
-			(pin passive line
-				(at -19.05 7.62 0)
+		(symbol "adafruit_bq25185_1_1"
+			(pin power_in line
+				(at -13.97 1.27 0)
 				(length 2.54)
-				(name "PA02_A0_D0"
+				(name "VIN"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -93,10 +93,10 @@
 					)
 				)
 			)
-			(pin passive line
-				(at -19.05 5.08 0)
+			(pin power_out line
+				(at -13.97 -2.54 0)
 				(length 2.54)
-				(name "PA4_A1_D1"
+				(name "VU"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -112,9 +112,9 @@
 				)
 			)
 			(pin passive line
-				(at -19.05 2.54 0)
+				(at -13.97 -6.35 0)
 				(length 2.54)
-				(name "PA10_A2_D2"
+				(name "D-"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -130,9 +130,9 @@
 				)
 			)
 			(pin passive line
-				(at -20.32 0 0)
+				(at -13.97 -10.16 0)
 				(length 2.54)
-				(name "PA11_A3_D3"
+				(name "D+"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -148,9 +148,9 @@
 				)
 			)
 			(pin passive line
-				(at -19.05 -2.54 0)
+				(at -13.97 -13.97 0)
 				(length 2.54)
-				(name "PA8_A4_D4_SDA"
+				(name "GND"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -165,10 +165,10 @@
 					)
 				)
 			)
-			(pin passive line
-				(at -19.05 -5.08 0)
+			(pin power_out line
+				(at -13.97 -17.78 0)
 				(length 2.54)
-				(name "PA9_A5_D5_SCL"
+				(name "BAT"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -183,10 +183,10 @@
 					)
 				)
 			)
-			(pin passive line
-				(at -19.05 -7.62 0)
+			(pin power_out line
+				(at -13.97 -21.59 0)
 				(length 2.54)
-				(name "PB08_A6_D6_TX"
+				(name "5V"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -201,10 +201,10 @@
 					)
 				)
 			)
-			(pin passive line
-				(at 21.59 -7.62 180)
+			(pin power_out line
+				(at -13.97 -25.4 0)
 				(length 2.54)
-				(name "PB09_A7_D7_RX"
+				(name "EN"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -212,114 +212,6 @@
 					)
 				)
 				(number "8"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 21.59 -5.08 180)
-				(length 2.54)
-				(name "PA7_A8_D8_SCK"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "9"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 21.59 -2.54 180)
-				(length 2.54)
-				(name "PA5_A9_D9_MISO"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "10"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 21.59 0 180)
-				(length 2.54)
-				(name "PA6_A10_D10_MOSI"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "11"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin power_out line
-				(at 21.59 2.54 180)
-				(length 2.54)
-				(name "3v3"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "12"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 21.59 5.08 180)
-				(length 2.54)
-				(name "GND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "13"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 21.59 7.62 180)
-				(length 2.54)
-				(name "5V"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "14"
 					(effects
 						(font
 							(size 1.27 1.27)

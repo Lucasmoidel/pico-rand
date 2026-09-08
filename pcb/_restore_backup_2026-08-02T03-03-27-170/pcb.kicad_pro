@@ -39,9 +39,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.0,
-          "height": 1.7,
-          "width": 1.7
+          "drill": 3.2,
+          "height": 6.4,
+          "width": 6.4
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -63,7 +63,7 @@
           "min_clearance": 0.5,
           "min_island_area": 10.0,
           "min_thickness": 0.25,
-          "pad_connection": 2,
+          "pad_connection": 1,
           "remove_islands": 0,
           "thermal_relief_gap": 0.5,
           "thermal_relief_spoke_width": 0.5
@@ -630,8 +630,8 @@
       "group_symbols": true,
       "include_excluded_from_bom": true,
       "name": "",
-      "sort_asc": false,
-      "sort_field": "Footprint"
+      "sort_asc": true,
+      "sort_field": "Reference"
     },
     "bus_aliases": {},
     "connection_grid_size": 50.0,
@@ -682,7 +682,7 @@
         "uuid": "bb6da232-368e-4a1f-bf9d-dbd7b03483b8"
       }
     ],
-    "used_designators": "J1,#PWR1,#PWR3,#PWR9-10,#FLG1-2,U2,SW1,SW3",
+    "used_designators": "#PWR1,#PWR3,#PWR9-10,#FLG1-2,U2,SW1,SW3",
     "variants": []
   },
   "sheets": [
